@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="=IE=edge">
+    <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+    <title>Roblox user lookup</title>
+</head>
+<body>
+    <h1>Enter Roblox username here</h1>
+    <input id="username"> <br> <br>
+    <button onclick="myFunction()"> Submit </button>
+    <h1 id="message"></h1>
+    <h1>Please refresh the page to lookup again</h1>
+    <img id="placeholder" class="hidden">
+    <style>
+        body {background-color:  darkslategray; text-align: center; color: floralwhite ;}
+    </style>
+    <script>
+        function myFunction(){
+            let username = document.querySelector("#username");
+            let message = document.querySelector("#message");
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "/endpoint", false);
+            xhr.send({
+                "data" : username
+                });
+            //recieves the img url from server side, or if not sets messsage to say user doesnt exist
+            //calls f2 with the url
+        }
+        function f2(imgsrc){
+            var placeholder = document.getElementById("placeholder");
+
+            placeholder.addEventListener("load", function(){
+            this.classList.remove("hidden");
+                        });
+            placeholder.src = imgsrc
+        }
+    </script>
+</body>
+</html>
